@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Menu from './menuapi.js';
+import Cards from './cards.js';
+import Navbar from './navbar.js';
+const App = () => {
+    const [currMenu, setMenu] = useState(Menu)
+
+
+    const filterout = (category) => {
+        var update = Menu.filter((curr) => {
+
+            return category === "all" ? curr : curr.category === category
+
+        })
+        setMenu(update);
+        console.log(currMenu);
+    }
+    return (
+        <>
+            <Navbar filterout={filterout} />
+            <Cards currMenu={currMenu} />
+
+
+
+
+        </>
+    )
 }
 
-export default App;
+// const MyName=()=>{
+//     return<h1>Hassan Kazmi</h1>;
+// }
+export default App
